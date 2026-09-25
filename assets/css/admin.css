@@ -1,0 +1,455 @@
+/* ==========================================================================
+   GIMaT Client Dashboard — Admin UI
+   ========================================================================== */
+
+.gimat-wrap {
+	--gimat-primary: #4f46e5;
+	--gimat-primary-dark: #4338ca;
+	--gimat-primary-light: #eef2ff;
+	--gimat-success: #059669;
+	--gimat-success-light: #ecfdf5;
+	--gimat-warning: #d97706;
+	--gimat-warning-light: #fffbeb;
+	--gimat-danger: #dc2626;
+	--gimat-danger-light: #fef2f2;
+	--gimat-ink: #111827;
+	--gimat-muted: #6b7280;
+	--gimat-border: #e5e7eb;
+	--gimat-surface: #ffffff;
+	--gimat-surface-soft: #f9fafb;
+	--gimat-radius: 12px;
+	--gimat-radius-sm: 8px;
+	--gimat-shadow: 0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.06);
+	--gimat-shadow-md: 0 4px 8px -2px rgba(16,24,40,.06), 0 2px 4px -2px rgba(16,24,40,.04);
+	max-width: 1280px;
+	margin-top: 8px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: var(--gimat-ink);
+}
+
+.gimat-wrap * { box-sizing: border-box; }
+
+/* ---------- Brand header ---------- */
+.gimat-brand-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 14px;
+	padding: 20px 24px;
+	margin: 8px 0 24px;
+	background: linear-gradient(135deg, #4f46e5 0%, #4338ca 55%, #3730a3 100%);
+	border-radius: var(--gimat-radius);
+	box-shadow: var(--gimat-shadow-md);
+	color: #fff;
+}
+.gimat-brand-left { display: flex; align-items: center; gap: 14px; }
+.gimat-brand-icon {
+	width: 44px; height: 44px;
+	border-radius: 10px;
+	background: rgba(255,255,255,.16);
+	display: flex; align-items: center; justify-content: center;
+	flex-shrink: 0;
+	backdrop-filter: blur(4px);
+}
+.gimat-brand-icon .dashicons { color: #fff; font-size: 24px; width: 24px; height: 24px; }
+.gimat-brand-header h1 { color: #fff; margin: 0; font-size: 21px; font-weight: 700; line-height: 1.2; }
+.gimat-brand-sub { color: rgba(255,255,255,.8); margin: 3px 0 0; font-size: 13px; }
+.gimat-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: relative; }
+
+/* ---------- Compact notice pill (replaces large WP-style notices) ---------- */
+.gimat-notice-pill {
+	display: inline-flex; align-items: center; gap: 6px;
+	font-size: 12px; font-weight: 600; line-height: 1.3;
+	padding: 4px 11px 4px 8px; border-radius: 999px;
+	white-space: nowrap;
+	transition: opacity .3s ease, transform .3s ease;
+}
+.gimat-notice-pill.gimat-notice-dismiss { opacity: 0; transform: translateY(-4px); pointer-events: none; }
+.gimat-notice-pill .dashicons { font-size: 14px; width: 14px; height: 14px; flex-shrink: 0; }
+.gimat-notice-pill-success { background: rgba(16,185,129,.18); border: 1px solid rgba(16,185,129,.4); color: #d1fae5; }
+.gimat-notice-pill-warning { background: rgba(245,158,11,.18); border: 1px solid rgba(245,158,11,.4); color: #fef3c7; }
+.gimat-notice-pill-error   { background: rgba(239,68,68,.18);  border: 1px solid rgba(239,68,68,.4);  color: #fee2e2; }
+
+.gimat-notice-details { position: relative; }
+.gimat-notice-details summary {
+	cursor: pointer; font-weight: 700; text-decoration: underline; text-underline-offset: 2px;
+	list-style: none;
+}
+.gimat-notice-details summary::-webkit-details-marker { display: none; }
+.gimat-notice-details[open] summary { margin-bottom: 2px; }
+.gimat-notice-details ul {
+	position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
+	list-style: disc; margin: 0; padding: 12px 14px 12px 28px;
+	width: max-content; max-width: 360px; max-height: 220px; overflow-y: auto;
+	background: var(--gimat-surface); color: var(--gimat-ink);
+	border: 1px solid var(--gimat-border); border-radius: var(--gimat-radius-sm);
+	box-shadow: var(--gimat-shadow-md);
+	font-size: 12px; font-weight: 500; white-space: normal;
+}
+.gimat-notice-details ul li + li { margin-top: 4px; }
+.gimat-brand-tag {
+	font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+	background: rgba(255,255,255,.15); color: #fff; padding: 5px 10px; border-radius: 999px;
+	border: 1px solid rgba(255,255,255,.25);
+}
+.gimat-brand-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* ---------- Dashboard-only "hero" branding (GIMaT Nepal, top-left) ---------- */
+.gimat-brand-header-hero { padding: 26px 28px; }
+.gimat-brand-header-hero .gimat-brand-icon {
+	width: 56px; height: 56px; border-radius: 14px;
+}
+.gimat-brand-header-hero .gimat-brand-icon .dashicons { font-size: 30px; width: 30px; height: 30px; }
+.gimat-brand-eyebrow {
+	color: rgba(255,255,255,.78); margin: 0 0 2px;
+	font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+}
+.gimat-brand-hero-title {
+	color: #fff; margin: 0; line-height: 1.05;
+	font-size: 34px; font-weight: 800; letter-spacing: -0.015em;
+}
+.gimat-brand-header-hero .gimat-brand-sub { font-size: 13.5px; margin-top: 6px; }
+
+/* ---------- Header user chip + logout ---------- */
+.gimat-user-chip {
+	display: flex; align-items: center; gap: 8px;
+	background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+	border-radius: 999px; padding: 4px 6px 4px 10px;
+}
+.gimat-user-chip-icon { color: #fff; font-size: 18px; width: 18px; height: 18px; opacity: .9; }
+.gimat-user-chip-info { display: flex; flex-direction: column; line-height: 1.15; }
+.gimat-user-chip-name { color: #fff; font-size: 12.5px; font-weight: 700; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gimat-user-chip-role { color: rgba(255,255,255,.75); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.gimat-logout-btn {
+	display: flex; align-items: center; justify-content: center;
+	width: 28px; height: 28px; border-radius: 50%;
+	background: rgba(255,255,255,.16); color: #fff; text-decoration: none;
+	transition: background .12s ease;
+}
+.gimat-logout-btn:hover { background: rgba(220,38,38,.85); color: #fff; }
+.gimat-logout-btn .dashicons { font-size: 15px; width: 15px; height: 15px; }
+
+/* ---------- Generic cards ---------- */
+.gimat-card {
+	background: var(--gimat-surface);
+	border: 1px solid var(--gimat-border);
+	border-radius: var(--gimat-radius);
+	padding: 22px 24px;
+	box-shadow: var(--gimat-shadow);
+}
+.gimat-card + .gimat-card { margin-top: 18px; }
+.gimat-card h2 { font-size: 15px; margin: 0 0 4px; font-weight: 700; color: var(--gimat-ink); }
+.gimat-card .description { color: var(--gimat-muted); font-size: 13px; }
+
+/* ---------- Stat grid ---------- */
+.gimat-stat-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 16px;
+	margin: 0 0 20px;
+}
+.gimat-stat-card {
+	background: var(--gimat-surface);
+	border: 1px solid var(--gimat-border);
+	border-radius: var(--gimat-radius);
+	padding: 20px 22px;
+	box-shadow: var(--gimat-shadow);
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 14px;
+	transition: transform .15s ease, box-shadow .15s ease;
+}
+.gimat-stat-card:hover { transform: translateY(-2px); box-shadow: var(--gimat-shadow-md); }
+.gimat-stat-label { text-transform: uppercase; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--gimat-muted); margin: 0 0 8px; }
+.gimat-stat-value { font-size: 30px; font-weight: 800; margin: 0; line-height: 1.1; color: var(--gimat-ink); letter-spacing: -0.02em; }
+.gimat-stat-sub { font-size: 12px; color: var(--gimat-muted); margin: 6px 0 0; }
+.gimat-stat-icon {
+	width: 42px; height: 42px; border-radius: 10px;
+	display: flex; align-items: center; justify-content: center;
+	background: var(--gimat-primary-light); color: var(--gimat-primary);
+	flex-shrink: 0;
+}
+.gimat-stat-icon .dashicons { font-size: 20px; width: 20px; height: 20px; }
+.gimat-stat-card:nth-child(2) .gimat-stat-icon { background: #ecfdf5; color: #059669; }
+.gimat-stat-card:nth-child(3) .gimat-stat-icon { background: #fff7ed; color: #ea580c; }
+.gimat-stat-card:nth-child(4) .gimat-stat-icon { background: #fdf4ff; color: #a21caf; }
+
+/* ---------- Dashboard Analytics charts ---------- */
+.gimat-charts-section { margin: 0 0 20px; }
+.gimat-charts-heading { margin: 0 0 12px; }
+.gimat-charts-heading h2 { font-size: 16px; font-weight: 700; margin: 0 0 3px; color: var(--gimat-ink); }
+.gimat-charts-heading .description { margin: 0; font-size: 12.5px; color: var(--gimat-muted); }
+.gimat-charts-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+}
+@media (max-width: 960px) { .gimat-charts-grid { grid-template-columns: 1fr; } }
+.gimat-chart-card { display: flex; flex-direction: column; }
+.gimat-chart-wide { grid-column: 1 / -1; }
+.gimat-chart-wide .gimat-chart-canvas-wrap { height: 220px; }
+.gimat-chart-subtitle { margin: -6px 0 12px !important; }
+.gimat-chart-canvas-wrap { position: relative; height: 260px; flex: 1; }
+.gimat-chart-empty {
+	display: flex; align-items: center; justify-content: center;
+	height: 100%; margin: 0; color: var(--gimat-muted); font-size: 13px; font-style: italic;
+}
+
+/* ---------- Bottom grid (dashboard) ---------- */
+.gimat-bottom-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; align-items: start; }
+@media (max-width: 960px) { .gimat-bottom-grid { grid-template-columns: 1fr; } }
+
+.gimat-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--gimat-border); }
+.gimat-card-header h2 { margin: 0; font-size: 15px; }
+.gimat-card-header a { font-size: 12.5px; font-weight: 600; color: var(--gimat-primary); text-decoration: none; }
+.gimat-card-header a:hover { text-decoration: underline; }
+
+.gimat-recent-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.gimat-recent-item {
+	display: flex; align-items: center; justify-content: space-between; gap: 14px;
+	padding: 14px 16px;
+	border: 1px solid var(--gimat-border);
+	border-radius: var(--gimat-radius-sm);
+	background: var(--gimat-surface);
+	transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.gimat-recent-item:hover { border-color: var(--gimat-primary); box-shadow: var(--gimat-shadow); transform: translateY(-1px); }
+.gimat-recent-main { min-width: 0; }
+.gimat-recent-titles { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
+.gimat-recent-event { font-size: 14px; font-weight: 700; color: var(--gimat-ink); letter-spacing: -0.01em; }
+.gimat-recent-subevent {
+	font-size: 11.5px; font-weight: 700; color: var(--gimat-primary-dark);
+	background: var(--gimat-primary-light); padding: 2px 9px; border-radius: 999px;
+	white-space: nowrap;
+}
+.gimat-recent-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gimat-muted); flex-wrap: wrap; }
+.gimat-recent-meta-item { display: inline-flex; align-items: center; gap: 4px; }
+.gimat-recent-meta-item .dashicons { font-size: 13px; width: 13px; height: 13px; color: var(--gimat-muted); }
+.gimat-recent-meta-dot { color: var(--gimat-border); }
+.gimat-muted { color: var(--gimat-muted); font-size: 12px; }
+.gimat-pill { background: var(--gimat-primary-light); color: var(--gimat-primary-dark); font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
+.gimat-empty { color: var(--gimat-muted); text-align: center; padding: 32px 16px; font-size: 13px; }
+.gimat-empty a { color: var(--gimat-primary); font-weight: 600; text-decoration: none; }
+.gimat-empty a:hover { text-decoration: underline; }
+.gimat-empty-icon { font-size: 32px; width: 32px; height: 32px; color: #d1d5db; margin-bottom: 8px; display: block; margin-left: auto; margin-right: auto; }
+
+/* ---------- Quick actions ---------- */
+.gimat-action {
+	display: flex; align-items: center; gap: 10px;
+	padding: 11px 14px; margin-bottom: 8px;
+	border-radius: var(--gimat-radius-sm);
+	border: 1px solid var(--gimat-border);
+	text-decoration: none; font-weight: 600; font-size: 13px;
+	color: var(--gimat-ink); background: var(--gimat-surface-soft);
+	transition: all .12s ease;
+}
+.gimat-action:hover { border-color: var(--gimat-primary); color: var(--gimat-primary); background: var(--gimat-primary-light); }
+.gimat-action .dashicons { font-size: 17px; width: 17px; height: 17px; }
+.gimat-action-primary { background: var(--gimat-primary); color: #fff; border-color: var(--gimat-primary); box-shadow: var(--gimat-shadow); }
+.gimat-action-primary:hover { background: var(--gimat-primary-dark); color: #fff; border-color: var(--gimat-primary-dark); }
+
+/* ---------- Page header ---------- */
+.gimat-page-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.gimat-page-header h1 { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
+.gimat-page-header .description { margin: 0; color: var(--gimat-muted); font-size: 13.5px; }
+.gimat-header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---------- Buttons (override wp-admin defaults for this plugin only) ---------- */
+.gimat-wrap .button,
+.gimat-wrap .button-secondary {
+	border-radius: var(--gimat-radius-sm) !important;
+	font-weight: 600 !important;
+	display: inline-flex !important;
+	align-items: center;
+	gap: 6px;
+	height: auto !important;
+	padding: 7px 14px !important;
+	line-height: 1.4 !important;
+	border-color: var(--gimat-border) !important;
+	box-shadow: none !important;
+	transition: all .12s ease;
+}
+.gimat-wrap .button .dashicons { font-size: 15px; width: 15px; height: 15px; }
+.gimat-wrap .button:hover { border-color: var(--gimat-primary) !important; color: var(--gimat-primary) !important; }
+.gimat-wrap .button-primary {
+	background: var(--gimat-primary) !important;
+	border-color: var(--gimat-primary) !important;
+	color: #fff !important;
+}
+.gimat-wrap .button-primary:hover { background: var(--gimat-primary-dark) !important; border-color: var(--gimat-primary-dark) !important; color: #fff !important; }
+
+/* ---------- Notices ---------- */
+.gimat-wrap .notice { border-radius: var(--gimat-radius-sm); border-left-width: 4px; box-shadow: var(--gimat-shadow); padding: 10px 14px; }
+.gimat-wrap .notice.is-dismissible { transition: opacity .35s ease, transform .35s ease; }
+.gimat-wrap .notice.is-dismissible.gimat-notice-dismiss { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+
+/* ---------- Add event card / inline forms ---------- */
+.gimat-add-event-card { margin: 0 0 18px; }
+.gimat-inline-form { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+.gimat-inline-form input[type=text] { min-width: 300px; }
+
+/* ---------- Table ---------- */
+.gimat-table-card { background: var(--gimat-surface); border: 1px solid var(--gimat-border); border-radius: var(--gimat-radius); overflow: hidden; box-shadow: var(--gimat-shadow); }
+.gimat-table { border: none !important; box-shadow: none !important; margin: 0 !important; }
+.gimat-table thead th {
+	background: var(--gimat-surface-soft);
+	color: var(--gimat-muted);
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: .04em;
+	border-bottom: 1px solid var(--gimat-border) !important;
+	padding: 12px 14px !important;
+}
+.gimat-table tbody td { padding: 13px 14px !important; font-size: 13.5px; border-bottom: 1px solid var(--gimat-surface-soft) !important; }
+.gimat-table tbody tr:hover { background: var(--gimat-surface-soft) !important; }
+.gimat-table tbody tr:last-child td { border-bottom: none !important; }
+.gimat-table .gimat-empty-cell { padding: 40px 14px !important; text-align: center; }
+.gimat-col-actions { width: 140px; white-space: nowrap; }
+.gimat-center { text-align: center; }
+.gimat-badge { background: var(--gimat-surface-soft); border: 1px solid var(--gimat-border); border-radius: 6px; padding: 3px 9px; font-size: 11.5px; font-weight: 600; color: var(--gimat-ink); }
+.gimat-total-badge { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; color: var(--gimat-ink); }
+.gimat-total-badge .dashicons { font-size: 14px; width: 14px; height: 14px; color: var(--gimat-muted); }
+
+.gimat-event-name-cell { min-width: 260px; }
+.gimat-event-edit-form.gimat-inline-form { margin-top: 0; }
+.gimat-event-edit-form input[type=text] { min-width: 220px; }
+.gimat-wrap .button-small { padding: 4px 10px !important; font-size: 12px !important; }
+
+.gimat-delete-form { display: inline; }
+.gimat-row-actions { display: flex; align-items: center; gap: 4px; justify-content: flex-end; }
+.gimat-icon-btn {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 30px; height: 30px; border-radius: 7px; border: 1px solid transparent;
+	background: transparent; cursor: pointer; color: var(--gimat-muted);
+	text-decoration: none; transition: all .12s ease;
+}
+.gimat-icon-btn .dashicons { font-size: 16px; width: 16px; height: 16px; }
+.gimat-icon-btn:hover { background: var(--gimat-primary-light); color: var(--gimat-primary); }
+.gimat-icon-btn-danger:hover { background: var(--gimat-danger-light); color: var(--gimat-danger); }
+
+.button-link-delete { color: var(--gimat-danger); background: none; border: none; cursor: pointer; font-weight: 600; font-size: 13px; padding: 0; }
+.button-link-delete:hover { color: #b91c1c; }
+
+/* ---------- Filters ---------- */
+.gimat-filter-card { margin-bottom: 18px; }
+.gimat-filter-title { display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gimat-muted); margin: 0 0 14px; }
+.gimat-filter-title .dashicons { font-size: 15px; width: 15px; height: 15px; }
+.gimat-filter-grid { display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 14px; align-items: end; }
+@media (max-width: 960px) { .gimat-filter-grid { grid-template-columns: 1fr 1fr; } }
+.gimat-filter-grid label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 5px; color: var(--gimat-muted); }
+.gimat-filter-grid input, .gimat-filter-grid select { width: 100%; border-radius: var(--gimat-radius-sm) !important; border-color: var(--gimat-border) !important; }
+.gimat-filter-buttons { display: flex; gap: 8px; align-items: center; }
+.gimat-filter-result-count { margin: 14px 0 0; font-size: 12.5px; color: var(--gimat-muted); padding-top: 12px; border-top: 1px solid var(--gimat-surface-soft); }
+.gimat-filter-result-count strong { color: var(--gimat-ink); }
+
+/* ---------- Pagination ---------- */
+.gimat-pagination { margin-top: 18px; display: flex; justify-content: center; }
+.gimat-pagination .page-numbers {
+	display: inline-flex; align-items: center; justify-content: center;
+	min-width: 34px; height: 34px; padding: 0 10px; margin: 0 3px;
+	border: 1px solid var(--gimat-border); border-radius: var(--gimat-radius-sm);
+	text-decoration: none; font-size: 13px; font-weight: 600; color: var(--gimat-ink);
+	background: var(--gimat-surface); transition: all .12s ease;
+}
+.gimat-pagination .page-numbers:hover { border-color: var(--gimat-primary); color: var(--gimat-primary); }
+.gimat-pagination .page-numbers.current { background: var(--gimat-primary); color: #fff; border-color: var(--gimat-primary); }
+.gimat-pagination .page-numbers.dots { border: none; background: none; }
+
+/* ---------- Import panel ---------- */
+.gimat-import-panel { border: 1px dashed var(--gimat-primary); background: var(--gimat-primary-light); margin-bottom: 18px; }
+.gimat-import-panel h2 { display: flex; align-items: center; gap: 8px; }
+.gimat-import-panel .description { margin: 6px 0 16px; }
+.gimat-import-dropzone {
+	display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+	background: var(--gimat-surface); border: 1px solid var(--gimat-border); border-radius: var(--gimat-radius-sm);
+	padding: 14px 16px;
+}
+.gimat-format-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.gimat-tag { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.gimat-tag-required { background: #fff; color: var(--gimat-primary); border: 1px solid var(--gimat-primary); }
+.gimat-tag-optional { background: #fff; color: var(--gimat-muted); border: 1px solid var(--gimat-border); }
+
+/* ---------- Record form ---------- */
+.gimat-form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 6px; }
+.gimat-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.gimat-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.gimat-span-2 { grid-column: span 2; }
+@media (max-width: 782px) { .gimat-form-grid { grid-template-columns: 1fr; } .gimat-span-2 { grid-column: span 1; } }
+.gimat-field label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px; color: var(--gimat-ink); }
+.gimat-field input, .gimat-field select {
+	width: 100%; border-radius: var(--gimat-radius-sm) !important; border-color: var(--gimat-border) !important;
+	padding: 8px 10px !important; font-size: 13.5px !important;
+}
+.gimat-field input:focus, .gimat-field select:focus { border-color: var(--gimat-primary) !important; box-shadow: 0 0 0 3px var(--gimat-primary-light) !important; }
+.req { color: var(--gimat-danger); }
+.gimat-hint { font-size: 12px; margin: 6px 0 0; color: var(--gimat-muted); }
+.gimat-hint a { color: var(--gimat-primary); text-decoration: none; font-weight: 600; }
+
+.gimat-section-title {
+	display: flex; align-items: center; justify-content: space-between;
+	margin: 26px 0 14px; padding-top: 20px; border-top: 1px solid var(--gimat-border);
+	font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--gimat-muted); font-weight: 700;
+}
+
+.gimat-custom-field-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; margin-bottom: 10px; align-items: center; }
+.gimat-custom-field-row input { border-radius: var(--gimat-radius-sm) !important; }
+.gimat-no-custom-fields { font-size: 13px; color: var(--gimat-muted); font-style: italic; background: var(--gimat-surface-soft); border-radius: var(--gimat-radius-sm); padding: 14px; text-align: center; }
+
+.gimat-form-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--gimat-border); }
+
+/* ---------- Misc badges used in list/preview tables ---------- */
+.gimat-status-ok { color: var(--gimat-success); }
+.gimat-status-warn { color: var(--gimat-warning); }
+.gimat-status-error { color: var(--gimat-danger); }
+
+/* ---------- Dark Mode Toggle ---------- */
+.gimat-dark-toggle {
+	background: transparent;
+	border: 1px solid var(--gimat-border);
+	border-radius: 6px;
+	padding: 6px 10px;
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 1;
+	margin-left: 8px;
+}
+.gimat-dark-toggle:hover {
+	background: var(--gimat-surface-soft);
+}
+
+/* ---------- Dark Mode Theme ---------- */
+.gimat-wrap.gimat-dark {
+	--gimat-ink: #e2e8f0;
+	--gimat-muted: #94a3b8;
+	--gimat-border: #334155;
+	--gimat-surface: #1e293b;
+	--gimat-surface-soft: #0f172a;
+	--gimat-primary-light: #312e81;
+	background: #0f172a;
+	color: var(--gimat-ink);
+}
+
+.gimat-wrap.gimat-dark .gimat-card,
+.gimat-wrap.gimat-dark .gimat-stat-card,
+.gimat-wrap.gimat-dark .gimat-brand-header,
+.gimat-wrap.gimat-dark table,
+.gimat-wrap.gimat-dark .gimat-filter-card {
+	background: #1e293b;
+	border-color: #334155;
+	color: #e2e8f0;
+}
+
+.gimat-wrap.gimat-dark h1,
+.gimat-wrap.gimat-dark h2,
+.gimat-wrap.gimat-dark h3 {
+	color: #f8fafc;
+}
+
+.gimat-wrap.gimat-dark .button {
+	background: #334155;
+	border-color: #475569;
+	color: #f1f5f9;
+}
