@@ -59,7 +59,6 @@ Add Record and All Records pages.
 
 | Original (Next.js/Supabase) | This plugin |
 |---|---|
-| Supabase auth / login page | WordPress's own login + roles/capabilities |
 | `events` table, CRUD | Custom table + admin CRUD, same cascade-delete of related records |
 | `training_records` table, CRUD | Custom table + admin CRUD (event, sub-event, org, duration, dates, location, facilitator, M/F counts, Dalit/Janajati/Other counts, JSON custom fields) |
 | Filters (event, date range, facilitator) + pagination | Same filters, `GET`-based, server-side pagination via `paginate_links()` |
